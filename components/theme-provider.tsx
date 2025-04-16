@@ -1,20 +1,12 @@
-// components/theme-provider.tsx
 'use client'
 
-import { useEffect, useState } from 'react'
-import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import * as React from 'react'
+import {
+  ThemeProvider as NextThemesProvider,
+  type ThemeProviderProps,
+} from 'next-themes'
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return <div className="min-h-screen bg-background">{children}</div>
-  }
-
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return (
     <NextThemesProvider
       attribute="class"
@@ -26,3 +18,4 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     </NextThemesProvider>
   )
 }
+
